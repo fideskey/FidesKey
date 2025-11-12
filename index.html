@@ -3,7 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>Fides Key - Landing Page</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <h2>Fides Key</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#features">Características</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Bienvenido a Fides Key</h1>
+            <p>Soluciones innovadoras para tus necesidades digitales</p>
+            <button class="cta-button">Comenzar Ahora</button>
+        </div>
+        <div class="hero-image">
+            <!-- Reemplaza con tu imagen -->
+            <img src="images/hero-bg.jpg" alt="Fides Key" style="background: #2563eb; width: 100%; height: 300px; border-radius: 10px;">
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Nuestras Características</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Rápido</h3>
+                    <p>Soluciones veloces y eficientes</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Innovador</h3>
+                    <p>Tecnología de vanguardia</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Seguro</h3>
+                    <p>Protección garantizada</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonios">
+        <div class="container">
+            <h2>Lo que Dicen Nuestros Clientes</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>"Increíble servicio, altamente recomendado!"</p>
+                    <span>- Juan Pérez</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Transformaron nuestro negocio por completo."</p>
+                    <span>- María García</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Nombre" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Mensaje" rows="5" required></textarea>
+                <button type="submit">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Fides Key. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
