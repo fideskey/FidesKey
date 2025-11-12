@@ -1,0 +1,36 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Play } from './Icons.js';
+
+const ArchiveCard = ({ video, onVideoSelect }) => {
+    const { t } = useTranslation();
+
+    return (
+        React.createElement('article', {
+            className: "group relative flex-shrink-0 w-64 bg-night-blue border border-gray-800 rounded-lg overflow-hidden cursor-pointer transition-transform duration-300 hover:-translate-y-1 hover:border-primary/50",
+            onClick: () => onVideoSelect(video)
+        },
+            React.createElement('div', { className: "relative h-36 bg-gray-800" },
+                React.createElement('img', {
+                    src: `${video.thumbnail}&w=300&h=200`,
+                    alt: t(video.title),
+                    loading: "lazy",
+                    className: "w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                }),
+                React.createElement('div', { className: "absolute inset-0 bg-black/40" }),
+                React.createElement('span', { className: "absolute bottom-2 right-2 bg-black/60 text-white text-xs font-semibold px-1.5 py-0.5 rounded" }, video.duration),
+                React.createElement('div', { className: "absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" },
+                    React.createElement('div', { className: "w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm" },
+                        React.createElement(Play, { className: "w-5 h-5 text-white ml-0.5" })
+                    )
+                )
+            ),
+            React.createElement('div', { className: "p-3" },
+                React.createElement('h3', { className: "text-sm font-semibold text-white group-hover:text-primary transition-colors line-clamp-2 h-10" }, t(video.title)),
+                React.createElement('p', { className: "text-xs text-gray-400 mt-1 truncate" }, video.source)
+            )
+        )
+    );
+};
+
+export default ArchiveCard;

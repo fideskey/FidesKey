@@ -1,0 +1,1 @@
+// This file is obsolete. Its content has been moved to AssistantWidget.js.
