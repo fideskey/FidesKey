@@ -1,119 +1,97 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Footer from './components/Footer';
+import './App.css';
+
+// Componente optimizado para imágenes externas
+const OptimizedImage = ({ src, alt, className }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <div className={`image-container ${className}`}>
+      {isLoading && (
+        <div className="image-placeholder">
+          <div className="loading-spinner"></div>
+        </div>
+      )}
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onLoad={() => setIsLoading(false)}
+        onError={() => {
+          setIsLoading(false);
+          setHasError(true);
+        }}
+        className={`optimized-image ${isLoading ? 'hidden' : 'visible'} ${
+          hasError ? 'error' : ''
+        }`}
+      />
+      {hasError && (
+        <div className="image-fallback">
+          <span>🔍 Imagen no disponible</span>
+        </div>
+      )}
+    </div>
+  );
+};
 
 function App() {
-  const { t, i18n } = useTranslation()
+  const [isLoading, setIsLoading] = useState(true);
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng)
+  useEffect(() => {
+    // Simular carga inicial
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="loading-spinner large"></div>
+          <p className="mt-4 text-gray-600">Cargando FidesKey...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="App">
-      {/* Header con selector de idiomas */}
-      <header className="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
-        <nav className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center">
-                <span className="text-gray-900 font-bold text-lg">FK</span>
+      <Header />
+      <Hero />
+      
+      {/* SECCIÓN DE NOTICIAS OPTIMIZADA */}
+      <section className="news-section">
+        <div className="container">
+          <h2>Noticias Verificadas</h2>
+          <div className="news-grid">
+            {/* EJEMPLO - Reemplaza con tus noticias reales */}
+            <article className="news-card">
+              <OptimizedImage
+                src="https://ejemplo.com/imagen-noticia.jpg"
+                alt="Noticia verificada"
+                className="news-image"
+              />
+              <div className="news-content">
+                <h3>Título de noticia verificada</h3>
+                <p>Descripción breve de la noticia de fuente confiable.</p>
+                <span className="news-source">Fuente: Medio Verificado</span>
               </div>
-              <span className="text-xl font-bold text-gray-900">FidesKey</span>
-            </div>
-
-            {/* Selector de idiomas */}
-            <div className="flex items-center space-x-2">
-              <button 
-                onClick={() => changeLanguage('es')}
-                className={`px-3 py-1 rounded ${i18n.language === 'es' ? 'bg-yellow-400 text-gray-900' : 'text-gray-600 hover:bg-gray-100'}`}
-              >
-                ES
-              </button>
-              <button 
-                onClick={() => changeLanguage('en')}
-                className={`px-3 py-1 rounded ${i18n.language === 'en' ? 'bg-yellow-400 text-gray-900' : 'text-gray-600 hover:bg-gray-100'}`}
-              >
-                EN
-              </button>
-              <button 
-                onClick={() => changeLanguage('pt')}
-                className={`px-3 py-1 rounded ${i18n.language === 'pt' ? 'bg-yellow-400 text-gray-900' : 'text-gray-600 hover:bg-gray-100'}`}
-              >
-                PT
-              </button>
-              <button 
-                onClick={() => changeLanguage('fr')}
-                className={`px-3 py-1 rounded ${i18n.language === 'fr' ? 'bg-yellow-400 text-gray-900' : 'text-gray-600 hover:bg-gray-100'}`}
-              >
-                FR
-              </button>
-            </div>
-          </div>
-        </nav>
-      </header>
-
-      {/* Hero Section */}
-      <section className="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 flex items-center pt-20">
-        <div className="container mx-auto px-6 py-20">
-          <div className="text-center text-white">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              {t('hero.title')}
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              {t('hero.subtitle')}
-            </p>
-            <button className="px-8 py-4 bg-yellow-400 text-gray-900 font-bold rounded-lg hover:bg-yellow-300 transition-colors text-lg">
-              {t('hero.cta')}
-            </button>
+            </article>
+            
+            {/* Añade más noticias aquí */}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
-            {t('features.title')}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t('features.1.title')}
-              </h3>
-              <p className="text-gray-600">
-                {t('features.1.description')}
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t('features.2.title')}
-              </h3>
-              <p className="text-gray-600">
-                {t('features.2.description')}
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t('features.3.title')}
-              </h3>
-              <p className="text-gray-600">
-                {t('features.3.description')}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-6 text-center">
-          <p>{t('footer.copyright')}</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
