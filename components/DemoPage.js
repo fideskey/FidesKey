@@ -46,17 +46,12 @@ const DemoPage = ({ onGoHome }) => {
 
     const handleSearchChange = (term) => {
         setSearchTerm(term);
-        // If the user starts searching, reset category filters for a global search experience.
-        if (term.trim() !== '') {
-            setActiveCategoryKey('sidebar.allTopics');
-            setActiveSubcategoryKey(null);
-        }
     };
 
     const filteredVideos = useMemo(() => {
         let videos = [...videoData];
 
-        // Search filter (APPLY FIRST)
+        // Search filter (BUSQUEDA GLOBAL - aplica a todo)
         if (searchTerm.trim() !== '') {
             const lowercasedTerm = searchTerm.toLowerCase();
             videos = videos.filter(video => {
@@ -74,19 +69,26 @@ const DemoPage = ({ onGoHome }) => {
             });
         }
 
-        // Sidebar category filter
-        if (activeCategoryKey !== 'sidebar.allTopics') {
+        // Filtro de categoría de sidebar (SOLO cuando NO hay búsqueda)
+        if (searchTerm.trim() === '' && activeCategoryKey !== 'sidebar.allTopics') {
             videos = videos.filter(video => video.category === activeCategoryKey);
         }
 
-        // Sidebar subcategory filter
-        if (activeSubcategoryKey) {
+        // Filtro de subcategoría de sidebar (SOLO cuando NO hay búsqueda)
+        if (searchTerm.trim() === '' && activeSubcategoryKey) {
             videos = videos.filter(video => video.subcategoryKey === activeSubcategoryKey);
         }
 
-        // Advanced duration filter
+        // Advanced duration filter (incluye "En vivo")
         if (durationFilter.length > 0) {
             videos = videos.filter(video => {
+                // Filtro "En vivo"
+                if (durationFilter.includes('live')) {
+                    // Simular videos en vivo (puedes ajustar esta lógica)
+                    const isLive = video.id % 7 === 0; // Ejemplo: cada 7vo video es "en vivo"
+                    if (isLive) return true;
+                }
+                
                 const [min, sec] = video.duration.split(':').map(Number);
                 const totalSeconds = min * 60 + sec;
                 return durationFilter.some(filter => {
@@ -142,7 +144,7 @@ const DemoPage = ({ onGoHome }) => {
     
     const handleCategorySelect = (key) => {
         setActiveCategoryKey(key);
-        setActiveSubcategoryKey(null); // Reset subcategory when main category changes
+        setActiveSubcategoryKey(null);
         const element = document.getElementById(key);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
