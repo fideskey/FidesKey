@@ -1,90 +1,97 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import './App.css';
 
-// Componente optimizado para imágenes externas
-const OptimizedImage = ({ src, alt, className }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-
-  return (
-    <div className={`image-container ${className}`}>
-      {isLoading && (
-        <div className="image-placeholder">
-          <div className="loading-spinner"></div>
-        </div>
-      )}
-      <img
-        src={src}
-        alt={alt}
-        loading="lazy"
-        onLoad={() => setIsLoading(false)}
-        onError={() => {
-          setIsLoading(false);
-          setHasError(true);
-        }}
-        className={`optimized-image ${isLoading ? 'hidden' : 'visible'} ${
-          hasError ? 'error' : ''
-        }`}
-      />
-      {hasError && (
-        <div className="image-fallback">
-          <span>🔍 Imagen no disponible</span>
-        </div>
-      )}
-    </div>
-  );
-};
-
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simular carga inicial
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="loading-spinner large"></div>
-          <p className="mt-4 text-gray-600">Cargando FidesKey...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="App">
       <Header />
       <Hero />
       
-      {/* SECCIÓN DE NOTICIAS OPTIMIZADA */}
-      <section className="news-section">
+      {/* Sección de Propuesta de Valor */}
+      <section className="value-proposition">
         <div className="container">
-          <h2>Noticias Verificadas</h2>
-          <div className="news-grid">
-            {/* EJEMPLO - Reemplaza con tus noticias reales */}
-            <article className="news-card">
-              <OptimizedImage
-                src="https://ejemplo.com/imagen-noticia.jpg"
-                alt="Noticia verificada"
-                className="news-image"
-              />
-              <div className="news-content">
-                <h3>Título de noticia verificada</h3>
-                <p>Descripción breve de la noticia de fuente confiable.</p>
-                <span className="news-source">Fuente: Medio Verificado</span>
-              </div>
-            </article>
+          <div className="value-grid">
+            <div className="value-card">
+              <div className="value-icon">🔒</div>
+              <h3>Contenido 100% Verificado</h3>
+              <p>Cada video proviene exclusivamente de instituciones pre-validadas en nuestro riguroso proceso de 24-48 horas.</p>
+            </div>
             
-            {/* Añade más noticias aquí */}
+            <div className="value-card">
+              <div className="value-icon">🏛️</div>
+              <h3>Fuentes Confiables</h3>
+              <p>Gobiernos, universidades, medios certificados y ONGs verificadas. Zero redes sociales, zero fake news.</p>
+            </div>
+            
+            <div className="value-card">
+              <div className="value-icon">🎯</div>
+              <h3>Información sin Ruido</h3>
+              <p>Encuentra exactamente lo que buscas sin algoritmos manipuladores. Contenido puro, sin desinformación.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección Para Instituciones */}
+      <section className="for-institutions">
+        <div className="container">
+          <div className="institution-content">
+            <div className="institution-text">
+              <h2>Para Instituciones</h2>
+              <p>Únase al ecosistema de confianza digital. Como institución verificada en FidesKey, usted podrá:</p>
+              <ul>
+                <li>Publicar contenido directamente a una audiencia que valora la veracidad</li>
+                <li>Monetizar su expertise mediante suscripciones y cursos certificados</li>
+                <li>Fortalecer su reputación como fuente confiable</li>
+                <li>Acceder a analytics detallados de su audiencia</li>
+              </ul>
+              <button className="cta-button">Solicitar Verificación</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección Para Usuarios */}
+      <section className="for-users">
+        <div className="container">
+          <div className="users-content">
+            <div className="users-text">
+              <h2>Para Usuarios</h2>
+              <p>En un mundo saturado de desinformación, FidesKey es su puerto seguro digital. Disfrute de:</p>
+              <ul>
+                <li>Acceso a contenido exclusivo de instituciones de primer nivel</li>
+                <li>Certificados de cursos verificados que potencian su carrera</li>
+                <li>Experiencia sin publicidad intrusiva (en plan Premium)</li>
+                <li>La tranquilidad de saber que cada fuente está verificada</li>
+              </ul>
+              <div className="user-buttons">
+                <button className="primary-button">Registrarse Gratis</button>
+                <button className="secondary-button">Conocer Plan Premium</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección de Estadísticas */}
+      <section className="stats-section">
+        <div className="container">
+          <div className="stats-grid">
+            <div className="stat-item">
+              <div className="stat-number">85%</div>
+              <div className="stat-label">de usuarios desconfían del contenido online (Reuters 2024)</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">$12B</div>
+              <div className="stat-label">mercado de verificación de contenido</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">78%</div>
+              <div className="stat-label">prefiere marcas transparentes (Edelman 2024)</div>
+            </div>
           </div>
         </div>
       </section>
