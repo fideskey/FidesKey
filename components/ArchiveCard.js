@@ -7,12 +7,12 @@ const ArchiveCard = ({ video, onVideoSelect }) => {
 
     return (
         React.createElement('article', {
-            className: "group relative flex-shrink-0 w-64 bg-night-blue border border-gray-800 rounded-lg overflow-hidden cursor-pointer transition-transform duration-300 hover:-translate-y-1 hover:border-primary/50",
+            className: "group relative flex-shrink-0 w-80 bg-night-blue border border-gray-800 rounded-lg overflow-hidden cursor-pointer transition-transform duration-300 hover:-translate-y-1 hover:border-primary/50 shadow-lg",
             onClick: () => onVideoSelect(video)
         },
-            React.createElement('div', { className: "relative h-36 bg-gray-800" },
+            React.createElement('div', { className: "relative h-44 bg-gray-800" },
                 React.createElement('img', {
-                    src: `${video.thumbnail}&w=300&h=200`,
+                    src: `${video.thumbnail}&w=320&h=176`,
                     alt: t(video.title),
                     loading: "lazy",
                     className: "w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -25,9 +25,9 @@ const ArchiveCard = ({ video, onVideoSelect }) => {
                     )
                 )
             ),
-            React.createElement('div', { className: "p-3" },
-                React.createElement('h3', { className: "text-sm font-semibold text-white group-hover:text-primary transition-colors line-clamp-2 h-10" }, t(video.title)),
-                React.createElement('p', { className: "text-xs text-gray-400 mt-1 truncate" }, video.source)
+            React.createElement('div', { className: "p-4" },
+                React.createElement('h3', { className: "text-sm font-semibold text-white group-hover:text-primary transition-colors line-clamp-2 h-10 mb-2" }, t(video.title)),
+                React.createElement('p', { className: "text-xs text-gray-400 truncate" }, video.source)
             )
         )
     );
