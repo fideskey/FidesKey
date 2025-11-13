@@ -1,1 +1,0 @@
-// This file is obsolete. The application now uses the .js version.
