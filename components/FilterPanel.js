@@ -36,6 +36,7 @@ const FilterPanel = ({ durationFilter, setDurationFilter, sourceFilter, setSourc
                 React.createElement('div', null,
                     React.createElement('h4', { className: "font-semibold text-white mb-3" }, t('demo.duration')),
                     React.createElement('div', { className: "space-y-2" },
+                        React.createElement(FilterCheckbox, { id: "d-live", label: t('demo.duration.live'), value: "live", checked: durationFilter.includes('live'), onChange: handleDurationChange }),
                         React.createElement(FilterCheckbox, { id: "d-short", label: t('demo.duration.short'), value: "short", checked: durationFilter.includes('short'), onChange: handleDurationChange }),
                         React.createElement(FilterCheckbox, { id: "d-medium", label: t('demo.duration.medium'), value: "medium", checked: durationFilter.includes('medium'), onChange: handleDurationChange }),
                         React.createElement(FilterCheckbox, { id: "d-long", label: t('demo.duration.long'), value: "long", checked: durationFilter.includes('long'), onChange: handleDurationChange }),
