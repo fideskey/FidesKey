@@ -3,7 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { sidebarData } from '../data/demoData.js';
 import { ChevronDown } from './Icons.js';
 
-const SmartSidebar = ({ activeCategoryKey, onCategorySelect, activeSubcategoryKey, onSubcategorySelect }) => {
+const SmartSidebar = ({ 
+  activeCategoryKey, 
+  onCategorySelect, 
+  activeSubcategoryKey, 
+  onSubcategorySelect,
+  className = ""  // ← AGREGAR ESTO
+}) => {
   const { t } = useTranslation();
   const [openCategories, setOpenCategories] = useState(() => {
     const initialState = {};
@@ -56,7 +62,9 @@ const SmartSidebar = ({ activeCategoryKey, onCategorySelect, activeSubcategoryKe
   };
 
   return (
-    React.createElement('aside', { className: "hidden lg:block w-72 bg-night-blue/50 border-r border-gray-700 flex-shrink-0" },
+    React.createElement('aside', { 
+      className: `hidden lg:block w-72 bg-night-blue/50 border-r border-gray-700 flex-shrink-0 ${className}`  // ← AGREGAR ${className}
+    },
       React.createElement('div', { className: "h-full flex flex-col" },
         React.createElement('div', { className: "flex-grow overflow-y-auto p-4" },
           React.createElement('nav', null,
