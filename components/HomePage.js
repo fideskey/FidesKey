@@ -3,9 +3,7 @@ import Header from './Header.js';
 import Hero from './Hero.js';
 import WhyFidesKey from './WhyFidesKey.js';
 import VerificationProcess from './VerificationProcess.js';
-import FactChecker from './FactChecker.js';
 import VideoShowcase from './VideoShowcase.js';
-import Quotes from './Quotes.js';
 import Footer from './Footer.js';
 import WelcomeModal from './WelcomeModal.js';
 import AssistantWidget from './AssistantWidget.js';
@@ -25,9 +23,7 @@ const HomePage = ({ onShowDemo }) => {
         React.createElement(Hero, { onShowDemo: onShowDemo }),
         React.createElement(WhyFidesKey, null),
         React.createElement(VerificationProcess, null),
-        React.createElement(FactChecker, null),
-        React.createElement(VideoShowcase, null),
-        React.createElement(Quotes, null)
+        React.createElement(VideoShowcase, null)
       ),
       React.createElement(Footer, null),
       React.createElement(AssistantWidget, null)
