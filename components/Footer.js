@@ -4,13 +4,13 @@ import { FidesKeyIcon, Twitter, Facebook, Instagram, Linkedin, Github, Threads, 
 import { sidebarData } from '../data/demoData.js';
 
 const socialLinks = [
-    { Icon: Twitter, href: 'https://twitter.com/fideskey', name: 'Twitter' },
-    { Icon: Facebook, href: 'https://facebook.com/fideskey', name: 'Facebook' },
-    { Icon: Instagram, href: 'https://instagram.com/fideskey', name: 'Instagram' },
-    { Icon: Linkedin, href: 'https://linkedin.com/company/fideskey', name: 'LinkedIn' },
-    { Icon: Github, href: 'https://github.com/fideskey', name: 'GitHub' },
-    { Icon: Threads, href: 'https://threads.net/@fideskey', name: 'Threads' },
-    { Icon: Youtube, href: 'https://youtube.com/@fideskey', name: 'YouTube' },
+    { Icon: Twitter, href: '#', name: 'Twitter' },
+    { Icon: Facebook, href: '#', name: 'Facebook' },
+    { Icon: Instagram, href: '#', name: 'Instagram' },
+    { Icon: Linkedin, href: '#', name: 'LinkedIn' },
+    { Icon: Github, href: '#', name: 'GitHub' },
+    { Icon: Threads, href: '#', name: 'Threads' },
+    { Icon: Youtube, href: '#', name: 'YouTube' },
 ];
 
 const Logo = () => {
@@ -30,12 +30,8 @@ const Logo = () => {
 };
 
 const FooterLink = ({ href = '#', children }) => {
-    const isPlaceholder = href === '#';
-    const classes = isPlaceholder
-        ? "text-gray-500 opacity-75 pointer-events-none"
-        : "text-gray-400 hover:text-primary transition-colors duration-200";
     return (
-        React.createElement('a', { href: href, className: classes }, children)
+        React.createElement('span', { className: "text-gray-400 opacity-75" }, children)
     );
 };
 
@@ -60,23 +56,23 @@ const Footer = () => {
                     React.createElement('div', { className: "col-span-2 md:col-span-1" },
                          React.createElement('h5', { className: "font-bold tracking-wider uppercase mb-4 text-sm text-gray-500" }, t('footer.connect')),
                          React.createElement('ul', { className: "space-y-3 text-sm" },
-                            React.createElement('li', null, React.createElement(FooterLink, { href: "mailto:info@fideskey.com" }, "info@fideskey.com")),
-                            React.createElement('li', null, React.createElement(FooterLink, { href: "#" }, t('footer.help_center'))),
-                            React.createElement('li', null, React.createElement(FooterLink, { href: "#" }, t('footer.careers')))
+                            React.createElement('li', null, React.createElement(FooterLink, null, "info@fideskey.com")),
+                            React.createElement('li', null, React.createElement(FooterLink, null, t('footer.help_center'))),
+                            React.createElement('li', null, React.createElement(FooterLink, null, t('footer.careers')))
                         )
                     ),
 
                     React.createElement('div', null,
                         React.createElement('h5', { className: "font-bold tracking-wider uppercase mb-4 text-sm text-gray-500" }, t('footer.explore')),
                         React.createElement('ul', { className: "space-y-3 text-sm" },
-                            exploreLinks.map(link => React.createElement('li', { key: link.key }, React.createElement(FooterLink, { href: link.href }, t(link.key))))
+                            exploreLinks.map(link => React.createElement('li', { key: link.key }, React.createElement(FooterLink, null, t(link.key))))
                         )
                     ),
                     
                     React.createElement('div', null,
                         React.createElement('h5', { className: "font-bold tracking-wider uppercase mb-4 text-sm text-gray-500" }, t('footer.legal')),
                         React.createElement('ul', { className: "space-y-3 text-sm" },
-                            legalLinks.map(link => React.createElement('li', { key: link.key }, React.createElement(FooterLink, { href: link.href }, t(link.key))))
+                            legalLinks.map(link => React.createElement('li', { key: link.key }, React.createElement(FooterLink, null, t(link.key))))
                         )
                     )
                 ),
@@ -85,8 +81,8 @@ const Footer = () => {
                     React.createElement('div', { className: "text-center md:text-left" },
                         React.createElement('h6', { className: "font-semibold text-gray-300 text-sm mb-2" }, t('footer.follow_us')),
                         React.createElement('div', { className: "flex justify-center md:justify-start space-x-4" },
-                            socialLinks.map(({ Icon, href, name }) => (
-                                React.createElement('a', { key: name, href: href, 'aria-label': name, target: "_blank", rel: "noopener noreferrer", className: "text-gray-400 hover:text-primary transition-colors" },
+                            socialLinks.map(({ Icon, name }) => (
+                                React.createElement('span', { key: name, className: "text-gray-400 opacity-75" },
                                     React.createElement(Icon, { className: "w-6 h-6" })
                                 )
                             ))
