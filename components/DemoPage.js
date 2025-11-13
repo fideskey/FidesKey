@@ -51,7 +51,7 @@ const DemoPage = ({ onGoHome }) => {
     const filteredVideos = useMemo(() => {
         let videos = [...videoData];
 
-        // Search filter (BUSQUEDA GLOBAL - aplica a todo)
+        // Search filter (BUSQUEDA GLOBAL)
         if (searchTerm.trim() !== '') {
             const lowercasedTerm = searchTerm.toLowerCase();
             videos = videos.filter(video => {
@@ -69,12 +69,12 @@ const DemoPage = ({ onGoHome }) => {
             });
         }
 
-        // Filtro de categoría de sidebar (SOLO cuando NO hay búsqueda)
+        // Filtro de categoría (SOLO cuando NO hay búsqueda)
         if (searchTerm.trim() === '' && activeCategoryKey !== 'sidebar.allTopics') {
             videos = videos.filter(video => video.category === activeCategoryKey);
         }
 
-        // Filtro de subcategoría de sidebar (SOLO cuando NO hay búsqueda)
+        // Filtro de subcategoría (SOLO cuando NO hay búsqueda)
         if (searchTerm.trim() === '' && activeSubcategoryKey) {
             videos = videos.filter(video => video.subcategoryKey === activeSubcategoryKey);
         }
@@ -82,10 +82,8 @@ const DemoPage = ({ onGoHome }) => {
         // Advanced duration filter (incluye "En vivo")
         if (durationFilter.length > 0) {
             videos = videos.filter(video => {
-                // Filtro "En vivo"
                 if (durationFilter.includes('live')) {
-                    // Simular videos en vivo (puedes ajustar esta lógica)
-                    const isLive = video.id % 7 === 0; // Ejemplo: cada 7vo video es "en vivo"
+                    const isLive = video.id % 7 === 0;
                     if (isLive) return true;
                 }
                 
@@ -204,7 +202,8 @@ const DemoPage = ({ onGoHome }) => {
                     activeCategoryKey: activeCategoryKey, 
                     onCategorySelect: handleCategorySelect,
                     activeSubcategoryKey: activeSubcategoryKey,
-                    onSubcategorySelect: handleSubcategorySelect
+                    onSubcategorySelect: handleSubcategorySelect,
+                    className: "sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto bg-night-blue/95 backdrop-blur-sm border-r border-white/10"
                 }),
                 React.createElement('main', { className: "flex-1 min-w-0 flex flex-col" },
                     React.createElement('div', { className: "w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow" },
@@ -214,7 +213,7 @@ const DemoPage = ({ onGoHome }) => {
                            React.createElement('div', { className: `space-y-12 transition-opacity duration-500 ${isAnimatingIn ? 'opacity-100' : 'opacity-0'}` },
                                 featuredVideo && React.createElement(FeaturedStory, { video: featuredVideo, onVideoSelect: setFocusedVideo }),
 
-                                React.createElement('div', { className: "border-b border-white/10 pb-6" },
+                                React.createElement('div', { className: "sticky top-20 z-40 bg-night-blue/80 backdrop-blur-md border-b border-white/10 pb-6 mb-6" },
                                     React.createElement('button', {
                                         onClick: () => setIsFilterPanelOpen(!isFilterPanelOpen),
                                         className: "flex items-center gap-2 text-white bg-white/5 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
