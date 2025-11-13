@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // FidesKey v2
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
