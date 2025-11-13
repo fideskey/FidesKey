@@ -11,7 +11,7 @@ const FilterCheckbox = ({ id, label, checked, onChange }) => (
             onChange: onChange,
             className: "h-4 w-4 rounded border-gray-600 bg-white/10 text-primary focus:ring-primary"
         }),
-        React.createElement('label', { htmlFor: id, className: "ml-3 text-sm text-gray-300" }, label)
+        React.createElement('label', { htmlFor: id, className: "ml-2 sm:ml-3 text-xs sm:text-sm text-gray-300" }, label)
     )
 );
 
@@ -31,11 +31,11 @@ const FilterPanel = ({ durationFilter, setDurationFilter, sourceFilter, setSourc
     };
 
     return (
-        React.createElement('div', { className: "bg-white/5 p-6 rounded-xl border border-gray-700 mb-8 animate-fade-in" },
-            React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8" },
-                React.createElement('div', null,
-                    React.createElement('h4', { className: "font-semibold text-white mb-3" }, t('demo.duration')),
-                    React.createElement('div', { className: "space-y-2" },
+        React.createElement('div', { className: "bg-white/5 p-4 sm:p-6 rounded-xl border border-gray-700 mb-6 sm:mb-8 animate-fade-in" },
+            React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8" },
+                React.createElement('div', { className: "md:col-span-1" },
+                    React.createElement('h4', { className: "font-semibold text-white mb-2 sm:mb-3 text-sm sm:text-base" }, t('demo.duration')),
+                    React.createElement('div', { className: "space-y-1 sm:space-y-2" },
                         React.createElement(FilterCheckbox, { id: "d-live", label: t('demo.duration.live'), value: "live", checked: durationFilter.includes('live'), onChange: handleDurationChange }),
                         React.createElement(FilterCheckbox, { id: "d-short", label: t('demo.duration.short'), value: "short", checked: durationFilter.includes('short'), onChange: handleDurationChange }),
                         React.createElement(FilterCheckbox, { id: "d-medium", label: t('demo.duration.medium'), value: "medium", checked: durationFilter.includes('medium'), onChange: handleDurationChange }),
@@ -43,28 +43,28 @@ const FilterPanel = ({ durationFilter, setDurationFilter, sourceFilter, setSourc
                         React.createElement(FilterCheckbox, { id: "d-xlong", label: t('demo.duration.extraLong'), value: "extraLong", checked: durationFilter.includes('extraLong'), onChange: handleDurationChange })
                     )
                 ),
-                React.createElement('div', { className: "lg:col-span-2" },
-                    React.createElement('h4', { className: "font-semibold text-white mb-3" }, t('demo.source')),
-                    React.createElement('div', { className: "grid grid-cols-2 md:grid-cols-3 gap-2 max-h-32 overflow-y-auto pr-2" },
+                React.createElement('div', { className: "md:col-span-1 lg:col-span-2" },
+                    React.createElement('h4', { className: "font-semibold text-white mb-2 sm:mb-3 text-sm sm:text-base" }, t('demo.source')),
+                    React.createElement('div', { className: "grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-32 overflow-y-auto pr-2" },
                         allSources.map(source => React.createElement(FilterCheckbox, { key: source, id: `s-${source}`, label: source, value: source, checked: sourceFilter.includes(source), onChange: handleSourceChange }))
                     )
                 ),
-                React.createElement('div', null,
-                    React.createElement('h4', { className: "font-semibold text-white mb-3" }, t('demo.sortBy')),
-                    React.createElement('div', { className: "space-y-2" },
+                React.createElement('div', { className: "md:col-span-1" },
+                    React.createElement('h4', { className: "font-semibold text-white mb-2 sm:mb-3 text-sm sm:text-base" }, t('demo.sortBy')),
+                    React.createElement('div', { className: "space-y-1 sm:space-y-2" },
                        React.createElement('div', { className: "flex items-center" },
                             React.createElement('input', { type: "radio", id: "sort-rel", name: "sort", value: "relevance", checked: sortBy === 'relevance', onChange: (e) => setSortBy(e.target.value), className: "h-4 w-4 border-gray-600 bg-white/10 text-primary focus:ring-primary" }),
-                            React.createElement('label', { htmlFor: "sort-rel", className: "ml-3 text-sm text-gray-300" }, t('demo.sort.relevance'))
+                            React.createElement('label', { htmlFor: "sort-rel", className: "ml-2 sm:ml-3 text-xs sm:text-sm text-gray-300" }, t('demo.sort.relevance'))
                         ),
                         React.createElement('div', { className: "flex items-center" },
                             React.createElement('input', { type: "radio", id: "sort-date", name: "sort", value: "date", checked: sortBy === 'date', onChange: (e) => setSortBy(e.target.value), className: "h-4 w-4 border-gray-600 bg-white/10 text-primary focus:ring-primary" }),
-                            React.createElement('label', { htmlFor: "sort-date", className: "ml-3 text-sm text-gray-300" }, t('demo.sort.date'))
+                            React.createElement('label', { htmlFor: "sort-date", className: "ml-2 sm:ml-3 text-xs sm:text-sm text-gray-300" }, t('demo.sort.date'))
                         )
                     )
                 )
             ),
-            React.createElement('div', { className: "text-right mt-6 border-t border-gray-700 pt-4" },
-                React.createElement('button', { onClick: onClear, className: "text-sm text-primary hover:underline" }, t('demo.clearFilters'))
+            React.createElement('div', { className: "text-right mt-4 sm:mt-6 border-t border-gray-700 pt-3 sm:pt-4" },
+                React.createElement('button', { onClick: onClear, className: "text-xs sm:text-sm text-primary hover:underline" }, t('demo.clearFilters'))
             )
         )
     );
